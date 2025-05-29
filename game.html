@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo Ramiro Correia</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #1f1f1f, #2b2b2b);
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .button-outline, .cta-button {
+      padding: 10px 20px;
+      border: 2px solid white;
+      border-radius: 25px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .button-outline:hover, .cta-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .section {
+      padding: 1rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 800px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 60%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .ramiro-zone {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    #ramiroStatic {
+      width: 200px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .speech-bubble {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      padding: 1rem 1.5rem;
+      max-width: 320px;
+      position: relative;
+      font-size: 1.2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      top: 25px;
+      left: -20px;
+      width: 0;
+      height: 0;
+      border: 12px solid transparent;
+      border-right-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .speech-bubble img {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">RAMIRO CORREIA</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="button-outline">Início</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Jogo das Respostas Místicas</h1>
+      <p>Faz uma pergunta... e o Oráculo de Ramiro responde.</p>
+    </div>
+  </section>
+
+  <section class="section">
+
+    <!-- Ramiro + balão -->
+    <div class="ramiro-zone">
+      <img id="ramiroStatic" src="assets/imgs/Ramiro_Skibidi.png" alt="Ramiro sempre presente" />
+      <div class="speech-bubble">
+        <div id="responseText">...</div>
+        <img id="responseImage" src="" alt="Imagem de resposta" style="display: none;" />
+      </div>
+    </div>
+
+    <!-- Input e botão -->
+    <div class="glass-card">
+      <input 
+        type="text" 
+        id="questionInput" 
+        placeholder="Escreve a tua pergunta..." 
+      />
+      <br/>
+      <button onclick="askQuestion()" class="cta-button">Perguntar</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Celsinho e Tabaibo</p>
+  </footer>
+
+  <script>
+    const textResponses = ["Sim", "Não", "Talvez", "Obviamente", "NÃO!", "Celso acorda","A calculadora tá te mandando mensagens?","4x+10=(2x-5)²"];
+    const imageResponses = [
+      "assets/imgs/respostas/resp1.jpg",
+      "assets/imgs/respostas/resp2.jpg",
+      "assets/imgs/respostas/resp3.jpg",
+      "assets/imgs/respostas/resp4.jpg",
+      "assets/imgs/respostas/resp5.jpg",
+      "assets/imgs/respostas/resp6.jpg",
+      "assets/imgs/respostas/resp7.jpg",
+      "assets/imgs/respostas/resp8.jpg",
+      "assets/imgs/respostas/resp9.jpg",
+      "assets/imgs/respostas/resp10.jpg"
+    ];
+
+    function askQuestion() {
+      const random = Math.random();
+      const responseText = document.getElementById("responseText");
+      const responseImage = document.getElementById("responseImage");
+
+      if (random < 0.5) {
+        // Só texto
+        const text = textResponses[Math.floor(Math.random() * textResponses.length)];
+        responseText.textContent = text;
+        responseImage.style.display = "none";
+        responseImage.src = "";
+      } else {
+        // Só imagem
+        const img = imageResponses[Math.floor(Math.random() * imageResponses.length)];
+        responseText.textContent = ""; // Limpa texto
+        responseImage.src = img;
+        responseImage.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
