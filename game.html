@@ -171,7 +171,7 @@
 
     <!-- Ramiro + balão -->
     <div class="ramiro-zone">
-      <img id="ramiroStatic" src="assets/imgs/Ramiro_Skibidi.png" alt="Ramiro sempre presente" />
+      <img id="ramiroStatic" src="assets/imgs/resp7.png" alt="Ramiro sempre presente" />
       <div class="speech-bubble">
         <div id="responseText">...</div>
         <img id="responseImage" src="" alt="Imagem de resposta" style="display: none;" />
@@ -195,18 +195,18 @@
   </footer>
 
   <script>
-    const textResponses = ["Sim", "Não", "Talvez", "Obviamente", "NÃO!", "Celso acorda","A calculadora tá te mandando mensagens?","4x+10=(2x-5)²","Faz a derivada","pi meios"];
+    const textResponses = ["Sim", "Não", "Talvez", "Obviamente", "NÃO!", "Celso acorda","A calculadora tá te mandando mensagens?","4x+10=(2x-5)²","Faz a derivada","pi meios","Sei lá","2"];
     const imageResponses = [
-      "assets/imgs/respostas/resp1.jpg",
-      "assets/imgs/respostas/resp2.jpg",
-      "assets/imgs/respostas/resp3.jpg",
-      "assets/imgs/respostas/resp4.jpg",
-      "assets/imgs/respostas/resp5.jpg",
-      "assets/imgs/respostas/resp6.jpg",
-      "assets/imgs/respostas/resp7.jpg",
-      "assets/imgs/respostas/resp8.jpg",
-      "assets/imgs/respostas/resp9.jpg",
-      "assets/imgs/respostas/resp10.jpg"
+      "assets/imgs/resp1.png",
+      "assets/imgs/resp2.png",
+      "assets/imgs/resp3.png",
+      "assets/imgs/resp4.png",
+      "assets/imgs/resp5.png",
+      "assets/imgs/resp6.png",
+      "assets/imgs/resp7.png",
+      "assets/imgs/resp8.png",
+      "assets/imgs/resp9.png",
+      "assets/imgs/resp10.png",
     ];
 
     function askQuestion() {
@@ -214,7 +214,7 @@
       const responseText = document.getElementById("responseText");
       const responseImage = document.getElementById("responseImage");
 
-      if (random < 0.5) {
+      if (random < 0.6) {
         // Só texto
         const text = textResponses[Math.floor(Math.random() * textResponses.length)];
         responseText.textContent = text;
