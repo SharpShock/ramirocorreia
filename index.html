@@ -8,14 +8,16 @@
 </head>
 <body>
 
+<div class="ramiro-background"></div>
+
     <header class="navbar">
         <div class="logo">RAMIRO CORREIA</div>
         <nav>
             <ul>
                 <li><a href="#about">Acerca</a></li>
-                <li><a href="#projects">Conquistas</a></li>
-                <li><a href="#contact" class="button-outline">Treino</a></li>
-                <li><a href="game.html" class="button-outline">Skibidi Ramiro</a></li>
+                <li><a href="#conquistas">Conquistas</a></li>
+                <li><a href="#treino" class="button-outline">Treino</a></li>
+                <li><a href="game.html" class="button-outline rainbow-glow">Skibidi Ramiro</a></li>
             </ul>
         </nav>
     </header>
@@ -39,7 +41,7 @@
         </div>
     </section>
 
-    <section id="about" class="section fade-in">
+    <section id="conquistas" class="section fade-in">
         <div class="glass-card with-image">
             <img src="assets/imgs/ramiro_ginasio.png" alt="Foto de Ramiro" class="card-image" />
             <div class="card-text">
@@ -51,7 +53,8 @@
         </div>
     </section>
 
-    <section id="contact" class="section fade-in">
+
+    <section id="treino" class="section fade-in">
     <div class="glass-card">
         <h2>Treino</h2>
         <p>Veja o lendário treino de Ramiro Correia abaixo:</p>
@@ -66,5 +69,20 @@
     </footer>
 
     <script src="script.js"></script>
+
+<script>
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        const scrollProgress = scrollTop / maxScroll;
+
+        const background = document.querySelector(".ramiro-background");
+        background.style.opacity = Math.min(scrollProgress * 2, 0.6); // max opacity 0.6
+    });
+    
+</script>
+
+<li><a href="bossfight.html" class="button-outline rainbow-glow">BOSS FIGHT</a></li>
+
 </body>
 </html>
