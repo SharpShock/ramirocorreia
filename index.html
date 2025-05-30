@@ -68,17 +68,16 @@
   </div>
 
   <script>
-     setTimeout(() => {
-        scare.style.transition = 'opacity 0.1s ease-in-out';
-        scare.style.opacity = '1';
+    function triggerJumpscare() {
+      const scare = document.getElementById('jumpscare');
+      scare.style.opacity = '1';
 
-        // Then fade out after 1.5 seconds of being visible
-        setTimeout(() => {
-          scare.style.transition = 'opacity 2s ease-out';
-          scare.style.opacity = '0';
-        }, 1500);
-
-      }, 1000); // <-- delay before appearing (in ms)
+      // Desaparece lentamente depois de 1.5 segundos
+      setTimeout(() => {
+        scare.style.transition = 'opacity 1s ease-out';
+        scare.style.opacity = '0';
+      }, 1500);
+    }
   </script>
 
     <footer>
