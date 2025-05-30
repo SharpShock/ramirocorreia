@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>Ramiro Plane Game</title>
     <style>
         * {
@@ -26,11 +26,12 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            font-size: 20px;
+            font-size: 4vw;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.7);
-            padding: 5px 10px;
+            padding: 0.5em 1em;
             border-radius: 5px;
+            z-index: 2;
         }
 
         #game-over {
@@ -40,9 +41,33 @@
             transform: translate(-50%, -50%);
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+            padding: 2em;
             border-radius: 10px;
             display: none;
+            z-index: 2;
+        }
+
+        #game-over h1 {
+            font-size: 6vw;
+        }
+
+        #game-over p {
+            font-size: 4vw;
+            margin: 1em 0;
+        }
+
+        #game-over button {
+            font-size: 4vw;
+            padding: 0.5em 1em;
+            border: none;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #game-over button:hover {
+            background-color: #222;
         }
     </style>
 </head>
@@ -57,11 +82,17 @@
     <script>
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
         const planeImg = new Image();
-        planeImg.src = "assets/imgs/ramiro_novo.png"; // Add a plane image with Ramiro here
+        planeImg.src = "assets/imgs/ramiro_novo.png";
 
         let plane = {
             x: 100,
@@ -77,9 +108,9 @@
         let gravity = 0.15;
         let isGameOver = false;
 
-        let scoreDisplay = document.getElementById("score");
-        let finalScoreDisplay = document.getElementById("finalScore");
-        let gameOverDisplay = document.getElementById("game-over");
+        const scoreDisplay = document.getElementById("score");
+        const finalScoreDisplay = document.getElementById("finalScore");
+        const gameOverDisplay = document.getElementById("game-over");
 
         function spawnObstacle() {
             const height = Math.random() * (canvas.height - 350) + 50;
@@ -146,9 +177,8 @@
 
         let obstacleTimer = 0;
         let obstacleInterval = 1500;
-        let scoreTimer = 0;
 
-        function gameLoop(timestamp) {
+        function gameLoop() {
             if (!isGameOver) {
                 update();
                 requestAnimationFrame(gameLoop);
@@ -156,7 +186,7 @@
                 if (Date.now() - obstacleTimer > obstacleInterval) {
                     spawnObstacle();
                     obstacleTimer = Date.now();
-                    if (obstacleInterval > 500) obstacleInterval -= 20; // increase difficulty
+                    if (obstacleInterval > 500) obstacleInterval -= 20;
                 }
 
                 score += 0.1;
@@ -164,8 +194,16 @@
             }
         }
 
+        // Controles por teclado
         window.addEventListener("keydown", function (e) {
             if (e.key === "ArrowUp" || e.key === "w") {
+                plane.dy = -6;
+            }
+        });
+
+        // Controles por toque na tela (mobile)
+        window.addEventListener("touchstart", function () {
+            if (!isGameOver) {
                 plane.dy = -6;
             }
         });
