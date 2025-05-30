@@ -176,20 +176,3 @@ footer {
     height: 100%;
 }
 
-#jumpscare {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0s ease-in;
-    z-index: 9999;
-    pointer-events: none;
-  }
-
-  #jumpscare img {
-    width: 400px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 30px red;
-  }

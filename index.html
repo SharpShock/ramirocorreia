@@ -61,25 +61,6 @@
     </div>
 </section>
 
-<button onclick="triggerJumpscare()">Ativar Ramiro Jumpscare</button>
-
-  <div id="jumpscare">
-    <img src="assets/imgs/ramiro_novo.png" alt="Ramiro assustador">
-  </div>
-
-  <script>
-    function triggerJumpscare() {
-      const scare = document.getElementById('jumpscare');
-      scare.style.opacity = '1';
-
-      // Desaparece lentamente depois de 1.5 segundos
-      setTimeout(() => {
-        scare.style.transition = 'opacity 1s ease-out';
-        scare.style.opacity = '0';
-      }, 1500);
-    }
-  </script>
-
     <footer>
         <p>&copy; 2024 Celsinho e Tabaibo</p>
     </footer>
