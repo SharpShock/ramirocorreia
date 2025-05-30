@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramiro Plane Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            display: block;
+            background: linear-gradient(to top, #87ceeb, #ffffff);
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="score">Score: 0</div>
+    <div id="game-over">
+        <h1>Game Over</h1>
+        <p id="finalScore"></p>
+        <button onclick="location.reload()">Play Again</button>
+    </div>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const planeImg = new Image();
+        planeImg.src = "assets/imgs/ramiro_novo.png"; // Add a plane image with Ramiro here
+
+        let plane = {
+            x: 100,
+            y: canvas.height / 2,
+            width: 80,
+            height: 50,
+            dy: 0,
+        };
+
+        let obstacles = [];
+        let score = 0;
+        let speed = 3;
+        let gravity = 0.15;
+        let isGameOver = false;
+
+        let scoreDisplay = document.getElementById("score");
+        let finalScoreDisplay = document.getElementById("finalScore");
+        let gameOverDisplay = document.getElementById("game-over");
+
+        function spawnObstacle() {
+            const height = Math.random() * (canvas.height - 350) + 50;
+            const gap = 250;
+            obstacles.push({ x: canvas.width, y: 0, width: 50, height: height });
+            obstacles.push({ x: canvas.width, y: height + gap, width: 50, height: canvas.height - height - gap });
+        }
+
+        function drawPlane() {
+            ctx.drawImage(planeImg, plane.x, plane.y, plane.width, plane.height);
+        }
+
+        function drawObstacles() {
+            ctx.fillStyle = "#444";
+            for (let obs of obstacles) {
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            }
+        }
+
+        function updateObstacles() {
+            for (let obs of obstacles) {
+                obs.x -= speed;
+            }
+            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+        }
+
+        function detectCollision() {
+            for (let obs of obstacles) {
+                if (
+                    plane.x < obs.x + obs.width &&
+                    plane.x + plane.width > obs.x &&
+                    plane.y < obs.y + obs.height &&
+                    plane.y + plane.height > obs.y
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function update() {
+            if (isGameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawPlane();
+            drawObstacles();
+
+            plane.y += plane.dy;
+            plane.dy += gravity;
+
+            if (plane.y + plane.height > canvas.height || plane.y < 0 || detectCollision()) {
+                gameOver();
+            }
+
+            updateObstacles();
+        }
+
+        function gameOver() {
+            isGameOver = true;
+            gameOverDisplay.style.display = "block";
+            finalScoreDisplay.textContent = `You scored ${Math.floor(score)} points!`;
+        }
+
+        let obstacleTimer = 0;
+        let obstacleInterval = 1500;
+        let scoreTimer = 0;
+
+        function gameLoop(timestamp) {
+            if (!isGameOver) {
+                update();
+                requestAnimationFrame(gameLoop);
+
+                if (Date.now() - obstacleTimer > obstacleInterval) {
+                    spawnObstacle();
+                    obstacleTimer = Date.now();
+                    if (obstacleInterval > 500) obstacleInterval -= 20; // increase difficulty
+                }
+
+                score += 0.1;
+                scoreDisplay.textContent = `Score: ${Math.floor(score)}`;
+            }
+        }
+
+        window.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowUp" || e.key === "w") {
+                plane.dy = -6;
+            }
+        });
+
+        planeImg.onload = function () {
+            gameLoop();
+        };
+    </script>
+</body>
+</html>
