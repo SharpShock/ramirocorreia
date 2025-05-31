@@ -73,11 +73,11 @@
 </head>
 <body>
     <canvas id="gameCanvas"></canvas>
-    <div id="score">Score: 0</div>
+    <div id="score">Pontos: 0</div>
     <div id="game-over">
         <h1>Game Over</h1>
         <p id="finalScore"></p>
-        <button onclick="location.reload()">Play Again</button>
+        <button onclick="location.reload()">Jogar Novamente</button>
     </div>
     <script>
         const canvas = document.getElementById("gameCanvas");
@@ -92,7 +92,7 @@
         window.addEventListener('resize', resizeCanvas);
 
         const planeImg = new Image();
-        planeImg.src = "assets/imgs/ramiro_novo.png";
+        planeImg.src = "assets/imgs/resp7.png";
 
         let plane = {
             x: 100,
@@ -172,7 +172,7 @@
         function gameOver() {
             isGameOver = true;
             gameOverDisplay.style.display = "block";
-            finalScoreDisplay.textContent = `You scored ${Math.floor(score)} points!`;
+            finalScoreDisplay.textContent = `Fizeste ${Math.floor(score)} pontos!`;
         }
 
         let obstacleTimer = 0;
@@ -190,18 +190,18 @@
                 }
 
                 score += 0.1;
-                scoreDisplay.textContent = `Score: ${Math.floor(score)}`;
+                scoreDisplay.textContent = `Pontos: ${Math.floor(score)}`;
             }
         }
 
-        // Controles por teclado
+        // Kyboard controls
         window.addEventListener("keydown", function (e) {
             if (e.key === "ArrowUp" || e.key === "w") {
                 plane.dy = -6;
             }
         });
 
-        // Controles por toque na tela (mobile)
+        // Touch controls
         window.addEventListener("touchstart", function () {
             if (!isGameOver) {
                 plane.dy = -6;

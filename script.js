@@ -1,4 +1,4 @@
-// Reveal animations on scroll
+// animação de scroll
 const fadeElements = document.querySelectorAll('.fade-in');
 
 const observer = new IntersectionObserver(entries => {
@@ -12,7 +12,7 @@ const observer = new IntersectionObserver(entries => {
 });
 
 fadeElements.forEach(el => observer.observe(el));
-// Smooth scroll for anchor links
+// animação de scroll pos links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();

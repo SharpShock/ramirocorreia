@@ -1,4 +1,4 @@
-/* Base Reset */
+/* base reset*/
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
     line-height: 1.6;
 }
 
-/* Navbar */
+/* navbar */
 .navbar {
     position: fixed;
     width: 100%;
@@ -56,7 +56,7 @@ body {
     border-radius: 5px;
 }
 
-/* Hero Section */
+/* forgo */
 .hero {
     height: 100vh;
     background: linear-gradient(to bottom right, #121212, #1a1a1d);
@@ -102,7 +102,7 @@ body {
     color: #fff;
 }
 
-/* Sections */
+/* sections */
 .section {
     padding: 100px 20px 60px;
     display: flex;
@@ -119,7 +119,7 @@ body {
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Footer */
+/* footer */
 footer {
     text-align: center;
     padding: 40px 20px;
@@ -127,7 +127,7 @@ footer {
     color: #ffffff;
 }
 
-/* Animations */
+/* animações goated */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -139,7 +139,7 @@ footer {
     transform: translateY(0);
 }
 
-/* Flex layout for cards with images */
+/* aquelas merdas daqueles flex card ou lá o caralho */
 .glass-card.with-image {
     display: flex;
     align-items: flex-start;
@@ -160,7 +160,7 @@ footer {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%; /* 16:9 (espero eu) */
     height: 0;
     overflow: hidden;
     margin-top: 1rem;
@@ -182,7 +182,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('assets/imgs/ramiro_novo.png') no-repeat center center;
+    background: url('assets/imgs/ramiro_novo.png') no-repeat center center; /* 20 anos para isto funcionar */
     background-size: cover;
     opacity: 0;
     pointer-events: none;
@@ -194,7 +194,7 @@ footer {
     opacity: 1;
 }
 
-/* Responsive Design */
+/* responsive design */
 @media (max-width: 768px) {
     .navbar ul {
         flex-direction: column;
@@ -262,7 +262,7 @@ footer {
     }
 }
 
-/* Responsive Design Improvements */
+/* responsive design nigga thing */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;

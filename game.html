@@ -169,7 +169,7 @@
 
   <section class="section">
 
-    <!-- Ramiro + balão -->
+    <!-- ramiro e balão de fala-->
     <div class="ramiro-zone">
       <img id="ramiroStatic" src="assets/imgs/resp7.png" alt="Ramiro sempre presente" />
       <div class="speech-bubble">
@@ -178,7 +178,7 @@
       </div>
     </div>
 
-    <!-- Input e botão -->
+    <!-- input e butão -->
     <div class="glass-card">
       <input 
         type="text" 
@@ -207,6 +207,7 @@
       "assets/imgs/resp8.png",
       "assets/imgs/resp9.png",
       "assets/imgs/resp10.png",
+      // meter mais?
     ];
 
     function askQuestion() {
@@ -215,15 +216,15 @@
       const responseImage = document.getElementById("responseImage");
 
       if (random < 0.6) {
-        // Só texto
+        // só texto
         const text = textResponses[Math.floor(Math.random() * textResponses.length)];
         responseText.textContent = text;
         responseImage.style.display = "none";
         responseImage.src = "";
       } else {
-        // Só imagem
+        // só imagem
         const img = imageResponses[Math.floor(Math.random() * imageResponses.length)];
-        responseText.textContent = ""; // Limpa texto
+        responseText.textContent = ""; // limpar texto
         responseImage.src = img;
         responseImage.style.display = "block";
       }
