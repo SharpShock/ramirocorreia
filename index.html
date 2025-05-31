@@ -13,19 +13,23 @@
 
     <header class="navbar">
         <div class="logo">RAMIRO CORREIA</div>
-        <nav>
+
+        <!-- Hamburger menu (mobile only) -->
+        <button class="menu-toggle" aria-label="Abrir menu">&#9776;</button>
+
+        <nav class="nav-menu">
             <ul>
                 <li><a href="#about">Acerca</a></li>
                 <li><a href="#conquistas">Conquistas</a></li>
                 <li><a href="#treino">Treino</a></li>
-                <li><a href="/plane.html" class="button-outline">Jogo</a></li> <!-- por ou tirar outline? 🤔-->
-                <li><a href="game.html" class="button-outline rainbow-glow">Skibidi Ramiro</a></li> <!-- efeito cancro roblox 2015-->
+                <li><a href="/plane.html" class="button-outline">Jogo</a></li>
+                <li><a href="game.html" class="button-outline rainbow-glow">Skibidi Ramiro</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <div class= "hero-content">
+        <div class="hero-content">
             <h1>Celebrando <span class="highlight">Ramiro Correia</span></h1>
             <p>O professor visionário de Matemática</p>
             <a href="#about" class="cta-button">Explorar legado</a>
@@ -37,8 +41,7 @@
             <img src="assets/imgs/ramiro_novo.png" alt="Foto de Ramiro" class="card-image" />
             <div class="card-text">
                 <h2>Acerca de Ramiro</h2>
-                <p>Ramiro Correia é uma figura lendária do liceu do Porto Santo, conhecido pela sua capacidade fantástica de criar testes impossíveis, dar matéria em tempo recorde
-                e fazer cardio no ginásio.</p>
+                <p>Ramiro Correia é uma figura lendária do liceu do Porto Santo, conhecido pela sua capacidade fantástica de criar testes impossíveis, dar matéria em tempo recorde e fazer cardio no ginásio.</p>
             </div>
         </div>
     </section>
@@ -55,16 +58,15 @@
         </div>
     </section>
 
-
     <section id="treino" class="section fade-in">
-    <div class="glass-card">
-        <h2>Treino</h2>
-        <p>Veja o lendário treino de Ramiro Correia abaixo:</p>
-        <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DbwhC0XAVTg?si=7owdke8Gzv1yE3Dn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="glass-card">
+            <h2>Treino</h2>
+            <p>Veja o lendário treino de Ramiro Correia abaixo:</p>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/DbwhC0XAVTg?si=7owdke8Gzv1yE3Dn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <footer>
         <p>&copy; 2024 Celsinho e Tabaibo</p>
@@ -72,18 +74,21 @@
 
     <script src="script.js"></script>
 
-<script>
-    window.addEventListener("scroll", () => {
-        const scrollTop = window.scrollY;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        const scrollProgress = scrollTop / maxScroll;
+    <script>
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollProgress = scrollTop / maxScroll;
 
-        const background = document.querySelector(".ramiro-background");
-        background.style.opacity = Math.min(scrollProgress * 2, 0.6); // max opacity 0.6
-        // ty chat gpt sem ti não seria possível por este caralho a dar
-    });
-    
-</script>
+            const background = document.querySelector(".ramiro-background");
+            background.style.opacity = Math.min(scrollProgress * 2, 0.6);
+        });
+
+        // Toggle mobile menu
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('open');
+        });
+    </script>
 
 </body>
 </html>
